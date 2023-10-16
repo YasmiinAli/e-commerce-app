@@ -14,7 +14,7 @@ export default function Register() {
   const validatonSchema= Yup.object({
     email: Yup.string().email('enter a valid email').required("Email is required"),
     name: Yup.string().required("Name is required").min(3,'min length 3 char').max(20,'max length 20 char'),
-    phone: Yup.string().required("Email is required").matches(/^01[0125][0-9]{8}$/, 'Enter valid number'),
+    phone: Yup.string().required("phone is required").matches(/^01[0125][0-9]{8}$/, 'Enter valid number'),
     password: Yup.string()
     .required("Password is required")
     .min(4, "Password is too short - should be 4 chars minimum"),

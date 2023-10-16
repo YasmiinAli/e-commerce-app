@@ -17,6 +17,7 @@ import { store } from './store/store';
 import Categories from './components/Categories/Categories';
 import Brands from './components/Brands/Brands';
 import { Toaster } from 'react-hot-toast';
+import Checkout from './components/Checkout/Checkout';
 
 function App() {
       let [userData, setUserData ] =useState(null);
@@ -54,6 +55,7 @@ function App() {
       {path:'products',element:<ProtectedRoute> < Products userData={userData} /> </ProtectedRoute> },
       {path:'ProductDetails/:id',element:<ProtectedRoute> < ProductDetails userData={userData} /> </ProtectedRoute> },
       {path:'cart',element:<ProtectedRoute> < Cart userData={userData} /> </ProtectedRoute> },
+      {path:'checkout',element:<ProtectedRoute> < Checkout /> </ProtectedRoute> },
       {path:'brands',element:<ProtectedRoute> < Brands userData={userData} /> </ProtectedRoute> },
       {path:'register',element:<Register />},
       {path:'login',element:<Login saveUserData={saveUserData}/>},

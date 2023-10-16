@@ -35,6 +35,12 @@ export let ClearUserCart = createAsyncThunk('cart/ClearUserCart',async ()=>{
     return response;
 })
 
+export let checkOutSession = createAsyncThunk('cart/checkOutSession',async (id,address)=> {
+    let res = await axios.post(`${baseUrl}/api/v1/orders/checkout-session/${id}?url=http://localhost:3000`,{"shippingAddress":address},{headers:{token}})
+        console.log(res);
+        return res
+})
+
 let CartSlice = createSlice({
     name:'cart',
     initialState: {
