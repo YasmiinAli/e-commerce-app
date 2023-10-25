@@ -6,17 +6,9 @@ import toast from 'react-hot-toast';
 
 
 export default function ProductCard({ product }) {
-
-      let [cartDetails, setcartDetails] = useState(null);
+// let {cart} = useSelector((state)=>state.cart)
     let dispatch = useDispatch();
-      useEffect(()=>{
-    getUserCart();  
-  },[])
-  async  function getUserCart(){
-let {payload} = await dispatch(GetLoggedUserCart())
-setcartDetails(payload.data)
-console.log(payload.data);
-}
+
 
   const handleNotification = () => toast.success('Product added successfully', {
 position: "top-right",
@@ -36,9 +28,8 @@ theme: "light",
   
   const handleClick = (id) => {
   dispatch(AddProductToCard(id))
-  getUserCart()
   handleNotification()
-  
+    dispatch(GetLoggedUserCart())
 }
 
   return (

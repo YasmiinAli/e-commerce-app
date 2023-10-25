@@ -35,10 +35,10 @@ export default function Login({saveUserData}) {
   }
   return (
     <>
-    <div className="container">
+    <div className="container ">
       <h2 className='text-center p-4'>Login</h2>
       {error === '' ? '' : <div className="alert alert-danger">{error}</div>}
-      <form onSubmit={loginForm.handleSubmit}>
+      <form onSubmit={loginForm.handleSubmit} className='col-md-6 m-auto'>
     <div className="mb-3">
     <label htmlFor="email"  className="form-label">Email </label>
     <input type="email" onChange={loginForm.handleChange} value={loginForm.values.email} onBlur={loginForm.handleBlur} className="form-control" id="email" name='email'/>
@@ -51,7 +51,7 @@ export default function Login({saveUserData}) {
   </div>
   <div className='d-flex justify-content-between'>
     <Link to="/forgetPassword">forget your password?</Link>
-      <button className="btn bg-main text-white ms-auto d-block" type='submit'>Login</button>
+      <button className="btn bg-main text-white ms-auto d-block mb-5" type='submit'>Login</button>
 
   </div>
   </form>

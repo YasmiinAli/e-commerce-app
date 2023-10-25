@@ -50,7 +50,7 @@ async function submitForm(values) {
       <div className="container">
         <h2 className='text-center p-4'>Register Now</h2>
           {error === '' ? '' : <div className="alert alert-danger">{error}</div>}
-        <form onSubmit={registerForm.handleSubmit}>
+        <form onSubmit={registerForm.handleSubmit} className='col-md-6 m-auto'>
             <div className="mb-3">
     <label htmlFor="name" className="form-label">Name </label>
     <input type="text" className="form-control" id="name" name='name' onBlur={registerForm.handleBlur} onChange={registerForm.handleChange} value={registerForm.values.name}/>
@@ -79,7 +79,7 @@ async function submitForm(values) {
   </div>
   
   {
-    loading ? <button className="btn bg-main text-white ms-auto d-block">
+    loading ? <button className="mb-3 btn bg-main text-white ms-auto d-block">
       <RotatingLines
       strokeColor="white"
       strokeWidth="4"
@@ -88,7 +88,7 @@ async function submitForm(values) {
       visible={true}
     />
       </button> 
-            : <button type="submit" disabled={!(registerForm.dirty && registerForm.isValid)} className="btn bg-main text-white ms-auto d-block">Submit</button>
+            : <button type="submit" disabled={!(registerForm.dirty && registerForm.isValid)} className="mb-3 btn bg-main text-white ms-auto d-block">Submit</button>
   }
 </form>
       </div>

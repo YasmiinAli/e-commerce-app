@@ -5,9 +5,8 @@ const baseUrl = 'https://ecommerce.routemisr.com';
 let token = localStorage.getItem('userToken')
 
 export let GetLoggedUserCart = createAsyncThunk('cart/GetLoggedUserCart',async ()=>{
-    return await axios.get(`${baseUrl}/api/v1/cart`,{headers:{token}})
-    .then((response)=> response)
-    .catch((error)=> error)
+    let res = await axios.get(`${baseUrl}/api/v1/cart`,{headers:{token}})
+    return res
 }) 
 
 export let AddProductToCard = createAsyncThunk('cart/AddProductToCard',async (id)=> {
@@ -20,7 +19,7 @@ return data.data
 export let updateProductQuantity = createAsyncThunk('cart/updateProductQuantity',async (id,count)=> {
     let res = await axios.put(`${baseUrl}/api/v1/cart/${id}`,{"count":count},{headers:{token}})
     console.log(res)
-    return res;
+    // return res;
 })
 
 export let removeSpecificItem = createAsyncThunk('cart/removeSpecificItem',async (id)=> {

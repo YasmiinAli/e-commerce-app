@@ -26,7 +26,8 @@ export default function Categories() {
         </div>
 :
         <>
-          <div className="container mt-5 mb-3">
+          <div className="container mt-4 ">
+            <h2 className='text-main mb-4' >All Categories</h2>
             <div className="row">
               {categoryList.map((category, index) => (
                 <div className="col-md-4 mb-3 " key={index}>

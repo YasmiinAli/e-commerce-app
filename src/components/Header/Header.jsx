@@ -1,25 +1,24 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import logo from '../../assets/images/freshcart-logo.svg'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { GetLoggedUserCart } from '../../store/Cart/CartSlice'
 
 export default function Header({ logOut, userData }) {
-  let [cartDetails, setcartDetails] = useState(null)
+  let {cart} = useSelector((state)=>state.cart)
   let dispatch = useDispatch()
   let nav = useNavigate()
   useEffect(() => {
     getUserCart()
   }, [])
-  async function getUserCart() {
-    let { payload } = await dispatch(GetLoggedUserCart())
-    setcartDetails(payload.data)
-    console.log(payload.data)
+   function getUserCart() {
+     dispatch(GetLoggedUserCart())
   }
 let clickCart =() => {
   nav('/cart')
 }
+
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary ">
@@ -66,6 +65,11 @@ let clickCart =() => {
                     Brands
                   </Link>
                 </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="wishlist">
+                    WishList
+                  </Link>
+                </li>                
               </ul>
             ) : (
               ''
@@ -90,7 +94,7 @@ let clickCart =() => {
                     
                       <i
                         className="fa-solid fa-cart-shopping cart fa-lg"
-                        value={cartDetails?.numOfCartItems}
+                        value={cart.data?.numOfCartItems==null ?0 : cart.data.numOfCartItems}
                       ></i>
                     
                   </li>

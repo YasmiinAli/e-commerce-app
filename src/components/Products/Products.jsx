@@ -30,6 +30,7 @@ export default function Products() {
       ) : (
         <div>
               <div className="container mt-4">
+                <h2 className='text-main ' >All Products</h2>
                 <div className="row">
                   {productList.map((product, index) => (
                     <div

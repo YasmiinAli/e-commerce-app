@@ -11,30 +11,28 @@ import { useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
 
 export default function Cart() {
-  let [cartDetails, setcartDetails] = useState(null)
-  let { isLoading } = useSelector((state) => state.cart)
+  
+  let {cart, isLoading } = useSelector((state) => state.cart)
 
-  console.log(cartDetails)
+  console.log(cart)
   let dispatch = useDispatch()
   let nav = useNavigate()
   useEffect(() => {
     getUserCart()
   }, [])
-  async function getUserCart() {
-    let { payload } = await dispatch(GetLoggedUserCart())
-    setcartDetails(payload.data)
-    console.log(payload.data)
+   function getUserCart() {
+     dispatch(GetLoggedUserCart())
+    
   }
 
-  async function updateProductCount(id, count) {
-    let res = await dispatch(updateProductQuantity(id, count))
-    console.log(res, id, count)
-    //  setcartDetails(payload.data);
-  }
-  async function removeItem(id) {
-    let { payload } = await dispatch(removeSpecificItem(id))
-    console.log(payload.data)
-    setcartDetails(payload.data)
+  // async function updateProductCount(id, count) {
+  //   let {payload} = await dispatch(updateProductQuantity(id, count))
+  //   console.log(payload, id, count)
+  //    setcartDetails(payload.data);
+  // }
+   function removeItem(id) {
+     dispatch(removeSpecificItem(id))
+    
   }
 
   function clearCart() {
@@ -53,8 +51,8 @@ progress: undefined,
 theme: "light",
 });
   function checkOut() {
-     if(cartDetails.status === 'success') {
-        nav('/checkout' ,{state: cartDetails})
+     if(cart.data.status === 'success') {
+        nav('/checkout' ,{state: cart.data})
      }
 //      else {
 //       nav('/cart')
@@ -81,15 +79,15 @@ theme: "light",
           <p>
             total price :{' '}
             <span className="text-main">
-              {cartDetails?.data.totalCartPrice
-                ? cartDetails?.data.totalCartPrice
+              {cart.data?.data.totalCartPrice
+                ? cart.data?.data.totalCartPrice
                 : 0}
             </span>
           </p>
 
-          {cartDetails?.data.products?.length > 0 ? (
+          {cart.data?.data.products?.length > 0 ? (
             <>
-              {cartDetails?.data.products?.map((product, index) => (
+              {cart.data.data.products?.map((product, index) => (
                 <div className="row border-bottom mb-2" key={index}>
                   <div className="col-md-9">
                     <div className="row mb-2">
@@ -115,12 +113,12 @@ theme: "light",
                   <div className="col-md-3">
                     <button
                       className="btn bg-main text-white "
-                      onClick={() =>
-                        updateProductCount(
-                          product.product.id,
-                          product.count + 1,
-                        )
-                      }
+                      // onClick={() =>
+                      //   updateProductCount(
+                      //     product.product.id,
+                      //     `${product.count + 1}`,
+                      //   )
+                      // }
                     >
                       {' '}
                       +{' '}
@@ -148,7 +146,7 @@ theme: "light",
                 className="btn bg-main text-white w-100"
                 onClick={checkOut}
               >
-                Check Out <i class="fa-regular fa-credit-card "></i>
+                Check Out <i className="fa-regular fa-credit-card "></i>
               </button>
             </div>
           </div>
