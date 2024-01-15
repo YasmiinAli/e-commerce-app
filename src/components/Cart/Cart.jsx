@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   ClearUserCart,
@@ -7,7 +7,7 @@ import {
   updateProductQuantity,
 } from '../../store/Cart/CartSlice'
 import { Circles } from 'react-loader-spinner'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
 
 export default function Cart() {
@@ -19,17 +19,16 @@ export default function Cart() {
   let nav = useNavigate()
   useEffect(() => {
     getUserCart()
+    
   }, [])
    function getUserCart() {
      dispatch(GetLoggedUserCart())
     
   }
 
-  // async function updateProductCount(id, count) {
-  //   let {payload} = await dispatch(updateProductQuantity(id, count))
-  //   console.log(payload, id, count)
-  //    setcartDetails(payload.data);
-  // }
+    async function updateProductCount(id, count) {
+     await dispatch(updateProductQuantity({id, count}))
+  }
    function removeItem(id) {
      dispatch(removeSpecificItem(id))
     
@@ -79,26 +78,27 @@ theme: "light",
           <p>
             total price :{' '}
             <span className="text-main">
-              {cart.data?.data.totalCartPrice
-                ? cart.data?.data.totalCartPrice
+              {cart.data?.data?.totalCartPrice
+                ? cart.data.data.totalCartPrice
                 : 0}
             </span>
           </p>
 
-          {cart.data?.data.products?.length > 0 ? (
+          {cart.data.data?.products?.length > 0 ? (
+            
             <>
               {cart.data.data.products?.map((product, index) => (
-                <div className="row border-bottom mb-2" key={index}>
+                <div className="row border-bottom mb-2 " key={index}>
                   <div className="col-md-9">
                     <div className="row mb-2">
                       <div className="col-md-3">
                         <img
                           src={product.product.imageCover}
                           alt="productImg"
-                          className="w-100"
+                          className="w-100 "
                         />
                       </div>
-                      <div className="col-md-9">
+                      <div className="col-md-9 m-auto">
                         <p>{product.product.title}</p>
                         <p className="text-main">price: {product.price}EGP</p>
                         <button
@@ -110,33 +110,33 @@ theme: "light",
                       </div>
                     </div>
                   </div>
-                  <div className="col-md-3">
+                  <div className="col-md-3 mb-sm-2 d-flex justify-content-center align-items-center">
                     <button
                       className="btn bg-main text-white "
-                      // onClick={() =>
-                      //   updateProductCount(
-                      //     product.product.id,
-                      //     `${product.count + 1}`,
-                      //   )
-                      // }
+                      onClick={() => updateProductCount(product.product.id, product.count+1) }
                     >
                       {' '}
                       +{' '}
                     </button>
-                    <span className="mx-2">{product.count}</span>
-                    <button className="btn bg-main text-white "> - </button>
+                    <span className="mx-2">{product.count }</span>
+                    <button className="btn bg-main text-white "
+                    onClick={() => updateProductCount(product.product.id, product.count-1) }
+                    > - </button>
                   </div>
                 </div>
               ))}{' '}
             </>
           ) : (
-            <div>No cart Items</div>
+            <div>
+              <h4>No cart Items</h4>
+              <Link to='/'className='link'>Start Shopping </Link>
+              </div>
           )}
           <div className="row">
-            <div className="col-md-4">
+            <div className="col-md-4  ">
               <button
-                className="btn bg-main text-white w-100"
-                onClick={clearCart}
+                className="btn bg-main text-white w-100 mb-2 mt-sm-2"
+                onClick={()=> clearCart()}
               >
                 Clear Cart <i className="fa-solid fa-trash-can"></i>
               </button>

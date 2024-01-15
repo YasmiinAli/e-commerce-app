@@ -34,7 +34,7 @@ export default function Products() {
                 <div className="row">
                   {productList.map((product, index) => (
                     <div
-                      className="col-md-2 product cursor-pointer mb-3 p-2"
+                      className="col-md-2 col-sm-4 product cursor-pointer mb-3 p-2"
                       key={index}
                     >
                       <ProductCard product={product} />

@@ -60,16 +60,16 @@ let clickCart =() => {
                     Cart
                   </Link>
                 </li>
-                <li className="nav-item">
+                {/* <li className="nav-item">
                   <Link className="nav-link" to="brands">
                     Brands
                   </Link>
-                </li>
-                <li className="nav-item">
+                </li> */}
+                {/* <li className="nav-item">
                   <Link className="nav-link" to="wishlist">
                     WishList
                   </Link>
-                </li>                
+                </li>                 */}
               </ul>
             ) : (
               ''

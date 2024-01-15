@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Footer() {
   return (
-    <div className="bg-body-tertiary p-5 ">
+    <div className="bg-body-tertiary p-5 mt-3">
       <div className="fs-5">Get the FreshCart App</div>
       <p className="text-muted">
         We will send you link, open it on your phone to download the app

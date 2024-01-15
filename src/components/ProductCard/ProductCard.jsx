@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { AddProductToCard, GetLoggedUserCart } from '../../store/Cart/CartSlice'
 import toast from 'react-hot-toast';
-
+import styles from './ProductCard.module.css'
 
 export default function ProductCard({ product }) {
 // let {cart} = useSelector((state)=>state.cart)
@@ -37,7 +37,7 @@ theme: "light",
       <>
             <div>
           <div onClick={clickCard}>
-            <img src={product.imageCover} className="card-img-top" alt="..." />
+            <img src={product.imageCover} className={styles.cardImg} alt="..." />
           <div className="card-body">
             <p className="card-text text-main">{product.category.name}</p>
             <p className="card-text">{product.title.split(' ').splice(0,2).join(' ')}</p>
@@ -48,7 +48,6 @@ theme: "light",
                 <span>{product.ratingsAverage}</span>
               </div>
             </div>
-
           </div>
           </div>
                 <button className='btn bg-main text-white w-100' onClick={() => handleClick(product.id)} >Add to cart</button>

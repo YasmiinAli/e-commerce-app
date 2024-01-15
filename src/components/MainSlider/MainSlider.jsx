@@ -2,9 +2,11 @@ import React from 'react'
 import OwlCarousel from 'react-owl-carousel'
 import 'owl.carousel/dist/assets/owl.carousel.css'
 import 'owl.carousel/dist/assets/owl.theme.default.css'
-import img1 from '../../assets/images/slider-image-1.jpeg'
-import img2 from '../../assets/images/slider-image-2.jpeg'
-import img3 from '../../assets/images/slider-image-3.jpeg'
+import img1 from '../../assets/images/1.jpg'
+import img2 from '../../assets/images/2.jpg'
+import img3 from '../../assets/images/3.jpg'
+import img4 from '../../assets/images/4.jpg'
+import img5 from '../../assets/images/5.jpg'
 
 export default function MainSlider() {
   return (
@@ -37,8 +39,8 @@ export default function MainSlider() {
           </OwlCarousel>
         </div>
         <div className="col-3">
-          <img src={img2} className="w-100 smallImg" alt="" />
-          <img src={img3} className="w-100 smallImg" alt="" />
+          <img src={img1} className="w-100 smallImg" alt="" />
+          <img src={img4} className="w-100 smallImg" alt="" />
         </div>
       </div>
     </>

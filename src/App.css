@@ -146,4 +146,8 @@ a , a:hover{
         top:-10px;
         opacity:0.9;
     }
-    
+    .link {
+        text-decoration: none;
+        margin: 2px;
+        color: var(--main-color);
+    } 
